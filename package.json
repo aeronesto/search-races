@@ -1,0 +1,50 @@
+{
+  "name": "nightlife-app",
+  "version": "1.0.0",
+  "description": "An application to coordinate activities.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/JordanSobovitch/nightlife-app.git"
+  },
+  "author": "Jordan Sobovitch",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JordanSobovitch/nightlife-app/issues"
+  },
+  "homepage": "https://github.com/JordanSobovitch/nightlife-app#readme",
+  "dependencies": {
+    "axios": "^0.15.3",
+    "bcrypt": "^1.0.2",
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.1",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.15.2",
+    "jwt-simple": "^0.5.1",
+    "mongodb": "^2.2.25",
+    "mongoose": "^4.9.1",
+    "morgan": "^1.8.1",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-router-dom": "^4.0.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.7.7",
+    "babel-core": "^6.24.0",
+    "babel-loader": "^6.4.1",
+    "babel-preset-es2015": "^6.24.0",
+    "babel-preset-react": "^6.23.0",
+    "css-loader": "^0.27.3",
+    "file-loader": "^0.10.1",
+    "node-sass": "^4.5.0",
+    "postcss-loader": "^1.3.3",
+    "sass-loader": "^6.0.3",
+    "style-loader": "^0.14.1",
+    "url-loader": "^0.5.8",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.4.2"
+  }
+}
