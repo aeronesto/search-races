@@ -98,9 +98,9 @@ button {
         flex: 1;
     }
     &.going-button {
-        margin-left: 20px;
+        margin-left: 10px;
         font-size: 14px;
-        padding: 3px 20px;
+        padding: 3px 10px;
     }
 }
 
@@ -148,13 +148,13 @@ span.number-going {
 }
 
 .bar-info {
-    flex: 2;
     font-size: 16px;
-    align-self: flex;
+    align-self: stretch;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
 }
+
 
 .bar-info-name {
     font-size: 16px;

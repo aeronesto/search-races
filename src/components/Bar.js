@@ -20,7 +20,7 @@ export default class Bar extends React.Component {
                     <img src={this.props.image_url} className={'bar-image'} />
                 </a>
                 <div className={'bar-info'}>
-                    <div className={'bar-info-name'}>{this.props.name}</div>
+                    <div className={'bar-info-name'}><b>{this.props.name}</b></div>
                     <div className={'bar-info-item'}>{'Price: ' + this.props.price}</div>
                     <div className={'bar-info-item'}>{'Rating: ' + this.props.rating}</div>
                 </div>
