@@ -1,4 +1,4 @@
-var User = require('../../models/user');
+var User = require('../models/user');
 var path = require('path');
 var sendToken = require('./send_token');
 
