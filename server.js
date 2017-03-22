@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-require('dotenv').config();
+//require('dotenv').config();
 
 //var login = require('./src/controllers/auth/login');
 //var logout = require('./src/controllers/auth/logout');
@@ -22,8 +22,8 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.post('/test/create_venue', create_venue);
-app.post('/test/create_token', create_token);
+//app.post('/test/create_venue', create_venue);
+//app.post('/test/create_token', create_token);
 
 app.get('/favicon.ico', function(req, res) {
     res.sendFile(path.join(__dirname, 'favicon.ico'));
