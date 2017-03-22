@@ -25,7 +25,7 @@ export default class App extends React.Component {
     handleLocationSubmit(location, event) {
         event.preventDefault();
 
-        console.log(location);
+        //console.log(location);
 
         var _this = this;
 
