@@ -30,6 +30,7 @@ img {
     height: 30px;
     width: 30px;
     &.github {
+        animation: github-spin 5s ease-in-out infinite;
         transition: background-color $trans-time ease, box-shadow $trans-time ease;
         border-radius: 50px;
         &:hover {
@@ -44,13 +45,6 @@ img {
 
 .footer {
     margin-top: 50px;
-}
-
-.github-link {
-    color: white;
-    &:hover {
-        color: yellow;
-    }
 }
 
 .app {
@@ -195,6 +189,16 @@ span.number-going {
     to {transform:rotate(360deg);}
 }
 
+@keyframes github-spin {
+    0% {transform:rotate(0deg);}
+    90% {transform:rotate(0deg);}
+    92% {transform:rotate(10deg);}
+    94% {transform:rotate(-10deg);}
+    96% {transform:rotate(10deg);}
+    98% {transform:rotate(-10deg);}
+    100% {transform:rotate(0deg);}
+}
+
 .spinning-gear {
     border-radius: 50px;
     margin-top: 50px;
@@ -213,6 +217,16 @@ span.number-going {
     @keyframes spin {
         from {transform:rotate(0deg);}
         to {transform:rotate(360deg);}
+    }
+
+    @keyframes github-spin {
+        0% {transform:rotate(0deg);}
+        90% {transform:rotate(0deg);}
+        92% {transform:rotate(10deg);}
+        94% {transform:rotate(-10deg);}
+        96% {transform:rotate(10deg);}
+        98% {transform:rotate(-10deg);}
+        100% {transform:rotate(0deg);}
     }
 
     .buffer {
@@ -237,6 +251,7 @@ span.number-going {
         height: 50px;
         width: 50px;
         &.github {
+            animation: github-spin 5s ease-in-out infinite;
             transition: background-color $trans-time ease, box-shadow $trans-time ease;
             border-radius: 50px;
             &:hover {
@@ -251,13 +266,6 @@ span.number-going {
 
     .footer {
         margin-top: 50px;
-    }
-
-    .github-link {
-        color: white;
-        &:hover {
-            color: yellow;
-        }
     }
 
     .app {
