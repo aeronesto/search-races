@@ -27,8 +27,8 @@ html {
 
 img {
     user-select: none;
-    height: 30px;
-    width: 30px;
+    height: 50px;
+    width: 50px;
     &.github {
         animation: github-spin 5s ease-in-out infinite;
         transition: background-color $trans-time ease, box-shadow $trans-time ease;
