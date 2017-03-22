@@ -17,7 +17,7 @@ export default class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            location: undefined,
+            last_search: undefined,
             bars: undefined
         };
     }
@@ -33,9 +33,13 @@ export default class App extends React.Component {
         if(!location)
             return;
 
+        // if the user searched for the same location twice, exit early
+        if(location === this.state.last_search)
+            return;
+
         this.setState({ bars: undefined });
         setTimeout(function() {
-            _this.setState({ bars: 'loading' });
+            _this.setState({ bars: 'loading', last_search: location });
         }, 200);
 
         var location_enc = location.split(' ').join('+');

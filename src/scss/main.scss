@@ -22,7 +22,7 @@ html {
 }
 
 .header {
-    margin: 50px auto;
+    margin: 30px auto;
 }
 
 img {
@@ -30,6 +30,7 @@ img {
     height: 50px;
     width: 50px;
     &.github {
+        margin-left: 5px;
         animation: github-spin 5s ease-in-out infinite;
         transition: background-color $trans-time ease, box-shadow $trans-time ease;
         border-radius: 50px;
@@ -40,6 +41,17 @@ img {
         &:active {
             background-color: lime;
         }
+    }
+}
+
+.yelp-logo {
+    margin-left: 3px;
+    height: 25px;
+    width: auto;
+    transform: translateY(3px);
+    transition: transform 0.4s ease;
+    &:hover {
+        transform: translateY(0);
     }
 }
 
@@ -76,6 +88,7 @@ img {
 
 button {
     @extend .box-shadow-mobile;
+    cursor: pointer;
     color: lime;
     border: 3px solid white;
     border-radius: 5px;

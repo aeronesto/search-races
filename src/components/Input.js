@@ -16,7 +16,7 @@ export default class Input extends Component {
     render() {
         return (
             <form className={'input-container'}>
-                <input onChange={this.handleInputField.bind(this)} type={'text'} className={'location-input'} placeholder={'enter a location...'} autoFocus={true} />
+                <input onChange={this.handleInputField.bind(this)} type={'text'} className={'location-input'} placeholder={'enter a location...'} autoFocus={true} value={this.state.location} />
                 <button onClick={this.props.handleLocationSubmit.bind(this, this.state.location)} type={'submit'} className={'go-button'}>GO</button>
             </form>
         );
