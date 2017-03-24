@@ -23,8 +23,7 @@ UserSchema.statics.findOrCreate = function (params, done) {
 			//No user was found... so create a new user with values from Facebook (all the profile. stuff)
 			if (!user) {
 				user = new User({
-					googleID: params.googleID,
-					displayName: params.displayName
+					googleID: params.googleID
 				});
 			user.save(function(err) {
 					if (err) console.log(err);
