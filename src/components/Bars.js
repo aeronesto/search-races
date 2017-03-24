@@ -8,11 +8,14 @@ export default class Bars extends React.Component {
 
         //console.log('IN BARS: ', this.props.bars);
 
+				var _this = this;
+
         var bars = undefined;
+
         if(this.props.bars && this.props.bars !== 'loading') {
             bars = this.props.bars.map(function(bar, i) {
                 return (
-                    <Bar image_url={bar.image_url} name={bar.name} price={bar.price} rating={bar.rating} url={bar.url} key={bar.id} />
+                    <Bar bar={bar} key={bar.venueID} handleGOINGOnClick={_this.props.handleGOINGOnClick.bind(_this)} />
                 );
             })
             //console.log(bars);

@@ -1,6 +1,5 @@
 var axios =require('axios');
 var qs = require('querystring');
-var read_token = require('../token/read_token');
 
 module.exports = function(req, res, next) {
 
@@ -15,8 +14,24 @@ module.exports = function(req, res, next) {
         url: url,
         headers: { 'Authorization': ('Bearer ' + req.token) }
     }).then(function(response) {
-        res.json({success: true, businesses: response.data.businesses}).end();
+
+				//only pass along the data that's required
+				var businesses = response.data.businesses.map(function(business){
+					return {
+						name: business.name,
+						venueID: business.id,
+						price: business.price,
+						rating: business.rating,
+						image_url: business.image_url,
+						url: business.url
+					};
+				})
+
+				req.query_data = businesses;
+				next();
+				
     }).catch(function(err) {
-        res.json({success: false}).end();
+        //res.json({success: false}).end();
+				next(err);
     });
 }

@@ -16,15 +16,13 @@ module.exports = function(req, res, next) {
     //save token
 
     q.push(function(cb) {
-        console.log('ASYNC 1: ');
+				//check for yelp token in db
+        //console.log('ASYNC 1: ');
         read_yelp_token(req, res, cb, next);
 
     }, function(cb) {
-        console.log('ASYNC 2: ');
-
-        // if token was found in the database, carry on
-        // if(req.token)
-        //    cb();
+				//if not in the db, request a new token from yelp
+        //console.log('ASYNC 2: ');
         
         axios.post('https://api.yelp.com/oauth2/token', qs.stringify({
             'grant_type': 'client_credentials',
@@ -40,14 +38,14 @@ module.exports = function(req, res, next) {
         });
         
     }, function(cb) {
-
-        console.log('ASYNC3: ');
+				//save new token in the db
+        //console.log('ASYNC3: ');
         create_yelp_token(req.token_data, cb);
 
     });
 
     q.start(function() {
-        console.log('Queue finished processing.');
+        //console.log('Queue finished processing.');
         next();
     });
 };

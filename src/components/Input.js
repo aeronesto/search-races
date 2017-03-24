@@ -4,9 +4,20 @@ export default class Input extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            location: ''
-        };
+
+				//console.log('INPUT CONSTRUCTOR');
+
+				if(localStorage.getItem('currentState')) {
+					this.state = {
+						location: JSON.parse(localStorage.getItem('currentState')).last_search
+					};
+					localStorage.removeItem('currentState');
+				}
+				else {
+					this.state = {
+							location: ''
+					};
+				}
     }
 
     handleInputField(event) {

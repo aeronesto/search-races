@@ -6,15 +6,14 @@ var Schema = mongoose.Schema;
 
 var db = mongoose.createConnection(process.env.MONGOLAB_URI);
 
-var yelpTokenSchema = new Schema({
+var YelpTokenSchema = new Schema({
     access_token: { type: String, required: true, unique: true },
     token_type: { type: String, require: true },
-    createdAt: { type: Date, default: Date.now },
-    expireAt: { type: Date, expires: 1 }
+    expireAt: { type: Date, required: true }
 });
 
-yelpTokenSchema.index({'createdAt':1,}, {'expireAfterSeconds': 0});
+YelpTokenSchema.index({ expireAt: 1 }, { expireAfterSeconds : 0 });
 
-var Yelp_Token = db.model('Yelp_Token', yelpTokenSchema, 'yelp_token');
+var Yelp_Token = db.model('Yelp_Token', YelpTokenSchema, 'yelp_token');
 
 module.exports = Yelp_Token;

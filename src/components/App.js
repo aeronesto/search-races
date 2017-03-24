@@ -7,62 +7,133 @@ import Bars from './Bars';
 
 import '../scss/main.scss';
 
-if(module.hot) {
-    module.hot.accept();
-    console.log('That\'s hot');
+if (module.hot) {
+		module
+				.hot
+				.accept();
+		console.log('That\'s hot');
 }
 
 export default class App extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            last_search: undefined,
-            bars: undefined
-        };
-    }
+		constructor(props) {
+				super(props);
 
-    handleLocationSubmit(location, event) {
-        event.preventDefault();
+				//console.log('APP CONSTRUCTOR');
 
-        //console.log(location);
+				//if localStorage was set, retrieve it, update app state and then delete the localStorage item
+				if(localStorage.getItem('currentState')) {
 
-        var _this = this;
+					var _this = this;
+					var location = JSON.parse(localStorage.getItem('currentState')).last_search;
 
-        //if the input field is empty, exit early
-        if(!location)
-            return;
+					var location_enc = location.split(' ').join('+');
 
-        // if the user searched for the same location twice, exit early
-        if(location === this.state.last_search)
-            return;
+					axios.post('/api/location_search', {location: location_enc})
+						.then(function (response) {
+								
+							_this.setState({bars: response.data.businesses, last_search: location});
+								
+						});
 
-        this.setState({ bars: undefined });
-        setTimeout(function() {
-            _this.setState({ bars: 'loading', last_search: location });
-        }, 200);
+					this.state = JSON.parse(localStorage.getItem('currentState'));
+					//localStorage.removeItem('currentState');
+				}
+				else {
+					this.state = {
+						last_search: undefined,
+						bars: undefined
+					};
+				}
 
-        var location_enc = location.split(' ').join('+');
+		}
 
-        axios.post('/api/location_search', { location: location_enc } )
-        .then(function(response) {
-            _this.setState({bars: undefined});
+		handleGOINGOnClick(venueID, event) {
+			event.preventDefault();
 
-            setTimeout(function() {
-                _this.setState({ bars: response.data.businesses });
-            }, 200);
-        });
-    }
+			var _this = this;
+			axios.post('/api/toggle_going', { venueID: venueID })
+			.then(function(response) {
 
-    render() {
+				if(response.data.success) {
 
-        return (
-            <div className='app'>
-                <Header />
-                <Input handleLocationSubmit={this.handleLocationSubmit.bind(this)} />
-                <div className={'buffer'} />
-                <Bars bars={this.state.bars} />
-            </div>
-        );
-    }
+					var newBars = _this.state.bars.map(function(bar) {
+						if(bar.venueID === response.data.business.venueID) {
+							//console.log('Bar: ', bar);
+							//console.log('Response Data: ', response.data.business);
+							bar.number_of_users_going = response.data.business.number_of_users_going;
+							bar.users_going = response.data.business.users_going.slice();
+							bar.current_user_going = response.data.current_user_going;
+							return bar;
+						}
+						else
+							return bar;
+					})
+
+					_this.setState({
+							bars: newBars
+						}
+					)
+				
+				} else {
+						console.log(response.data);
+
+						//save current state for when redirected back from google
+						localStorage.setItem('currentState', JSON.stringify({ bars: _this.state.bars, last_search: _this.state.last_search }));
+
+						window.location.href = '/auth/google';
+				}
+			});
+		}
+
+		handleLocationSubmit(location, event) {
+				event.preventDefault();
+
+				//console.log(location);
+
+				var _this = this;
+
+				//if the input field is empty, exit early
+				if (!location)
+					return;
+
+				// if the user searched for the same location twice, exit early
+				if (location === this.state.last_search)
+					return;
+
+				this.setState({bars: undefined});
+				setTimeout(function () {
+						_this.setState({bars: 'loading', last_search: location});
+				}, 200);
+
+				var location_enc = location
+						.split(' ')
+						.join('+');
+
+				axios
+						.post('/api/location_search', {location: location_enc})
+						.then(function (response) {
+								_this.setState({bars: undefined});
+
+								setTimeout(function () {
+									_this.setState({bars: response.data.businesses});
+								}, 200);
+						});
+		}
+
+		render() {
+
+				return (
+						<div className='app'>
+								<Header/>
+								<Input
+									handleLocationSubmit={this.handleLocationSubmit.bind(this)}
+									/>
+								<div className={'buffer'}/>
+								<Bars
+									bars={this.state.bars}
+									handleGOINGOnClick={this.handleGOINGOnClick.bind(this)}/>
+						</div>
+				);
+		}
 }

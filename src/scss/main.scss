@@ -116,6 +116,10 @@ span.number-going {
     margin-right: 10px;
 }
 
+span.current {
+	color: yellow;
+}
+
 .bar-card {
     @extend .box-shadow-mobile;
     overflow: hidden;
