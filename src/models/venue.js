@@ -27,7 +27,7 @@ VenueSchema.statics.findOrCreate = function (params, done) {
 				//expires tomorrow at 5:00:00 a.m.
 				var d = new Date();         //current Date
 				d.setDate(d.getDate() + 1)  //same time tomorrow
-				d.setHours(5)               //5:XX:XX a.m.
+				d.setHours(10)               //10zulu, 5:XX:XX a.m. central standard time
 				d.setMinutes(0)             //5:00:XX a.m.
 				d.setSeconds(0)             //5:00:00 a.m.
 
