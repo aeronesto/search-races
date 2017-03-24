@@ -8,7 +8,6 @@ var db = mongoose.createConnection(process.env.MONGOLAB_URI);
 
 var UserSchema = new Schema({
     googleID: { type: String, required: true, unique: true },
-    displayName: { type: String, required: true },
     createdAt: { type: Date, default: Date.now },
 });
 
