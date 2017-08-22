@@ -1,1 +1,1 @@
-Nightlife Coordination App
+App to search local races
