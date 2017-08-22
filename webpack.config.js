@@ -4,7 +4,7 @@ var autoprefixer = require('autoprefixer');
 
 module.exports = {
 
-    entry: ['./index.js'],
+    entry: ['./app/app.js'],
 
     output: {
         publicPath: '/dist/',
