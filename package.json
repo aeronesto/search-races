@@ -18,14 +18,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/JordanSobovitch/nightlife-app.git"
+    "url": "git+ssh://git@github.com/aeronesto/search-races.git"
   },
   "author": "Jordan Sobovitch",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/JordanSobovitch/nightlife-app/issues"
+    "url": "https://github.com/aeronesto/search-races/issues"
   },
-  "homepage": "https://github.com/JordanSobovitch/nightlife-app#readme",
+  "homepage": "https://github.com/aeronesto/search-races#readme",
   "dependencies": {
     "async": "^2.1.5",
     "axios": "^0.15.3",
